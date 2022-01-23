@@ -16,7 +16,7 @@ pub fn build(b: *Builder) void {
     exe.linkSystemLibrary("SDL2");
     exe.linkSystemLibrary("GL");
 
-    comptime const cxx_options = [_][]const u8{
+    const cxx_options = [_][]const u8{
         "-fno-strict-aliasing",
         "-fno-exceptions",
         "-fno-rtti",
@@ -26,13 +26,13 @@ pub fn build(b: *Builder) void {
     //exe.defineCMacro("BGFX_CONFIG_DEBUG=1");
 
     // bx
-    comptime const bx = "submodules/bx/";
+    const bx = "submodules/bx/";
     exe.addIncludeDir(bx ++ "include/");
     exe.addIncludeDir(bx ++ "3rdparty/");
     exe.addCSourceFile(bx ++ "src/amalgamated.cpp", &cxx_options);
 
     // bimg
-    comptime const bimg = "submodules/bimg/";
+    const bimg = "submodules/bimg/";
     exe.addIncludeDir(bimg ++ "include/");
     exe.addIncludeDir(bimg ++ "3rdparty/");
     exe.addIncludeDir(bimg ++ "3rdparty/astc-codec/");
@@ -53,7 +53,7 @@ pub fn build(b: *Builder) void {
     exe.addCSourceFile(bimg ++ "3rdparty/astc-codec/src/decoder/weight_infill.cc", &cxx_options);
 
     // bgfx
-    comptime const bgfx = "submodules/bgfx/";
+    const bgfx = "submodules/bgfx/";
     exe.addIncludeDir(bgfx ++ "include/");
     exe.addIncludeDir(bgfx ++ "3rdparty/");
     exe.addIncludeDir(bgfx ++ "3rdparty/dxsdk/include/");
